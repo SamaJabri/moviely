@@ -1,0 +1,8 @@
+@import "src/styles/variables.scss";
+
+.searchbar {
+  background: transparent;
+  border: 2px solid $primary;
+  border-radius: $radius-sm;
+  padding: 1rem 2rem;
+}
