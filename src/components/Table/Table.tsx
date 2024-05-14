@@ -2,7 +2,7 @@
 import { Movie } from "../../store/types";
 
 // Styling
-import "./movie-card.scss";
+import "./table.scss";
 
 interface TableProps {
   movies: Movie[];
