@@ -7,40 +7,6 @@
   width: 100%;
 }
 
-.intro {
-  @include flex-display($justify: start);
-  position: relative;
-  width: 100%;
-  height: 40rem;
-  padding: 1rem 5rem;
-
-  &_video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    filter: brightness(60%);
-  }
-
-  &_description {
-    z-index: 10;
-
-    h1 {
-      font-size: 6rem;
-      color: white;
-    }
-
-    p {
-      font-size: 1.5rem;
-      width: 50%;
-      margin-top: 1rem;
-      color: white;
-    }
-  }
-}
-
 .movies {
   @include flex-display($direction: col);
   gap: 3rem;

@@ -1,6 +1,5 @@
 // Libraries
 import { useEffect, useState } from "react";
-import { isEqual } from "lodash";
 
 // Store
 import useMovieStore from "../../store/movies";
@@ -18,7 +17,7 @@ const Home = () => {
     useMovieStore();
 
   const [viewMode, setViewMode] = useState("grid");
-  const [dataTypeShown, setDataTypeShown] = useState("movies");
+  const [dataTypeShown, setDataTypeShown] = useState("movie");
   const [dataShown, setDataShown] = useState(movies);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,45 +28,23 @@ const Home = () => {
   const handleDataTypeShownChange = (type: string) => {
     setDataTypeShown(type);
     setDataShown(
-      type === "movies" ? movies : type === "series" ? series : episodes
+      type === "movie" ? movies : type === "series" ? series : episodes
     );
   };
-  console.log(dataShown);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     fetchMovies(searchValue, dataTypeShown, currentPage);
     setDataShown(
-      dataTypeShown === "movies"
+      dataTypeShown === "movie"
         ? movies
         : dataTypeShown === "series"
         ? series
         : episodes
     );
-  }, [searchValue, dataTypeShown, currentPage]); */
+  }, [searchValue, dataTypeShown, currentPage]);
 
   return (
     <div className="home">
-      <div className="intro">
-        <video
-          playsInline
-          autoPlay
-          muted
-          loop
-          poster="./images/cinema.png"
-          className="intro_video"
-        >
-          <source src="./videos/cinema.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="intro_description">
-          <h1>Moviely</h1>
-          <p>
-            Your all time favorite destination for making your Friday movie
-            nights better.
-          </p>
-        </div>
-      </div>
-
       <div className="movies">
         <div className="options">
           <SearchBar
@@ -110,10 +87,8 @@ const Home = () => {
 
       <div className="movies-switcher">
         <p
-          className={`${
-            dataTypeShown === "movies" && "movies-switcher-active"
-          }`}
-          onClick={() => handleDataTypeShownChange("movies")}
+          className={`${dataTypeShown === "movie" && "movies-switcher-active"}`}
+          onClick={() => handleDataTypeShownChange("movie")}
         >
           Movies
         </p>

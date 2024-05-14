@@ -12,16 +12,17 @@ const useMovieStore = create<MovieStore>()(
       movies: [],
       series: [],
       episodes: [],
+      movieInfo: {},
       totalResults: 0,
 
       fetchMovies: async (
-        search: string = "Pokemon",
+        search: string = "",
         type: string = "movie",
         page: number = 1
       ) => {
         const url = `http://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
           search
-        )}&page=${page}&type=${type}`;
+        )}&t=${encodeURIComponent(search)}&page=${page}&type=${type}`;
 
         try {
           const response = await axios.get<MovieResponse>(url);
@@ -54,6 +55,26 @@ const useMovieStore = create<MovieStore>()(
               ? { series: [] }
               : { episodes: [] }
           );
+        }
+      },
+
+      fetchMovieData: async (imdbID: string = "tt3108894") => {
+        const url = `http://www.omdbapi.com/?apikey=98bfdd67&i=${encodeURIComponent(
+          imdbID
+        )}`;
+
+        try {
+          const response = await axios.get<MovieResponse>(url);
+          if (response?.status === 200) {
+            set({ movieInfo: response.data });
+            console.log(response);
+          } else {
+            console.error(response.data.Error || "Failed to fetch movies.");
+            set({ movieInfo: {} });
+          }
+        } catch (error) {
+          console.error("Error fetching movies:", error);
+          set({ movieInfo: {} });
         }
       },
     }),

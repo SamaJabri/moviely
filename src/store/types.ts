@@ -29,6 +29,7 @@ interface Movie {
   Production: string;
   Website: string;
   Response: string;
+  totalSeasons: number;
 }
 
 interface MovieResponse {
@@ -42,8 +43,10 @@ interface MovieStore {
   movies: Movie[];
   series: Movie[];
   episodes: Movie[];
+  movieInfo: Movie;
   totalResults: number;
   fetchMovies: (search?: string, type?: string, page?: number) => Promise<void>;
+  fetchMovieData: (imdbID?: string, type?: string) => Promise<void>;
 }
 
 export type { Movie, MovieResponse, MovieStore };

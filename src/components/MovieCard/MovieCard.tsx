@@ -1,4 +1,5 @@
 // Types
+import { useNavigate } from "react-router";
 import { Movie } from "../../store/types";
 
 // Styling
@@ -11,8 +12,10 @@ interface CardProps {
 const MovieCard: React.FC<CardProps> = ({ movie }) => {
   const { Title, Year, imdbID, Poster } = movie;
 
+  const navigate = useNavigate();
+
   return (
-    <div className="card">
+    <div className="card" onClick={() => navigate(`movie/${imdbID}`)}>
       <div className="card_image-container">
         <img
           src={Poster === "N/A" ? "./images/cinema.png" : Poster}

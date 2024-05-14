@@ -1,0 +1,93 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixins.scss";
+
+.movie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: start;
+  gap: 3rem;
+  margin: 0 5rem;
+
+  &_image {
+    img {
+      object-fit: cover;
+      border-radius: $radius-md;
+      width: 100%;
+    }
+  }
+
+  &_info {
+    h1 {
+      font-size: 2.3rem;
+    }
+
+    h2 {
+      margin-top: 1rem;
+    }
+
+    &-type {
+      color: $extra-info;
+      text-transform: capitalize;
+    }
+
+    &-plot {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    &-detail {
+      @include flex-display($justify: start, $align: start);
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+
+      span {
+        font-weight: 400;
+      }
+
+      &-score {
+        background-color: $secondary-light;
+        border: none;
+        border-radius: $radius-sm;
+        padding: 0.2rem 0.4rem;
+        color: white;
+        font-weight: 500;
+      }
+
+      &-rating {
+        padding: 0.3rem 0.5rem;
+        border: 2px solid #242424;
+        border-radius: $radius-sm;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", fantasy;
+      }
+    }
+
+    &-imdb {
+      border: 2px solid $primary;
+      border-radius: $radius-md;
+      padding: 1rem;
+      margin: 1rem 0;
+
+      &-logo {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &_genres {
+    @include flex-display($justify: start);
+    gap: 1rem;
+    margin: 1rem 0;
+
+    &-genre {
+      background-color: $secondary-light;
+      color: white;
+      border: none;
+      border-radius: 20rem;
+      padding: 0.5rem 2rem;
+    }
+  }
+}
