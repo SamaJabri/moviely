@@ -14,11 +14,15 @@ import Table from "../../components/Table/Table";
 import "./home.scss";
 
 const Home = () => {
-  const { movies, series, episodes, fetchMovies } = useMovieStore();
+  const { movies, series, episodes, totalResults, fetchMovies } =
+    useMovieStore();
 
   const [viewMode, setViewMode] = useState("grid");
   const [dataTypeShown, setDataTypeShown] = useState("movies");
   const [dataShown, setDataShown] = useState(movies);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(totalResults / 10);
 
   const [searchValue, setSearchValue] = useState("Pokemon");
 
@@ -28,10 +32,18 @@ const Home = () => {
       type === "movies" ? movies : type === "series" ? series : episodes
     );
   };
+  console.log(dataShown);
 
-  useEffect(() => {
-    fetchMovies(searchValue, dataTypeShown);
-  }, [searchValue, dataTypeShown]);
+  /*  useEffect(() => {
+    fetchMovies(searchValue, dataTypeShown, currentPage);
+    setDataShown(
+      dataTypeShown === "movies"
+        ? movies
+        : dataTypeShown === "series"
+        ? series
+        : episodes
+    );
+  }, [searchValue, dataTypeShown, currentPage]); */
 
   return (
     <div className="home">
@@ -141,6 +153,24 @@ const Home = () => {
             inconvenience!
           </p>
         )}
+      </div>
+
+      <div className="pagination-controls">
+        <button
+          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+          disabled={currentPage === 1}
+        >
+          &#60;
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+          disabled={currentPage === totalPages}
+        >
+          &#62;
+        </button>
       </div>
     </div>
   );

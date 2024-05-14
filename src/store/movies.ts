@@ -12,11 +12,12 @@ const useMovieStore = create<MovieStore>()(
       movies: [],
       series: [],
       episodes: [],
+      totalResults: 0,
 
       fetchMovies: async (
         search: string = "Pokemon",
         type: string = "movie",
-        page: number = 5
+        page: number = 1
       ) => {
         const url = `http://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
           search
@@ -32,6 +33,7 @@ const useMovieStore = create<MovieStore>()(
                 ? { series: response.data.Search }
                 : { episodes: response.data.Search }
             );
+            set({ totalResults: parseInt(response.data.totalResults, 10) });
             console.log(response);
           } else {
             console.error(response.data.Error || "Failed to fetch movies.");

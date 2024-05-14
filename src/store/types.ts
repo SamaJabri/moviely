@@ -42,6 +42,7 @@ interface MovieStore {
   movies: Movie[];
   series: Movie[];
   episodes: Movie[];
+  totalResults: number;
   fetchMovies: (search?: string, type?: string, page?: number) => Promise<void>;
 }
 
