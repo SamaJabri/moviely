@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Moviely
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)]()
 
-Currently, two official plugins are available:
+This is the frontend code of Moviely developed using React + TypeScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## Expanding the ESLint configuration
+This project was developed using React + TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Frontend: [ReactJs](https://react.dev/)
+- State-management: [Zustand](https://zustand-demo.pmnd.rs/)
 
-- Configure the top-level `parserOptions` property like this:
+## Table of Contents
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Demo](#demo)
+- [Contact](#contact)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Introduction
+
+Your all time favorite destination for making your Friday movie nights better.
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/SamaJabri/Moviely`
+2. Install dependencies by running the following command in the project folder: `npm install`
+3. Run the project: `npm run dev`
+
+## Demo
+
+You can find a working demo on [ReactJs](https://www.netlify.com/)
+Demo: [moviely-co.netlify.app](https://moviely-co.netlify.app/)
+
+## Contact
+
+- For any inquiries or support, please email at sama.jabri@outlook.com.

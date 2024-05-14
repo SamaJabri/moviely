@@ -132,7 +132,12 @@ const MoviePage = () => {
                 height={30}
                 width={30}
               />
-              Seasons: <span>{movieInfo.totalSeasons || "None"}</span>
+              Seasons:
+              <span>
+                {movieInfo.totalSeasons !== "N/A"
+                  ? movieInfo.totalSeasons
+                  : "Not mentioned"}
+              </span>
             </p>
           )}
 

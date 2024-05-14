@@ -21,7 +21,9 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`header ${scrolled ? "header_scrolled" : ""}`}>Moviely</div>
+    <div className={`header ${scrolled ? "header_scrolled" : ""}`}>
+      <a href="/">Moviely</a>
+    </div>
   );
 };
 

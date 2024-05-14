@@ -29,7 +29,7 @@ interface Movie {
   Production: string;
   Website: string;
   Response: string;
-  totalSeasons: number;
+  totalSeasons: string;
 }
 
 interface MovieResponse {
