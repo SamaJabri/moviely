@@ -37,6 +37,7 @@ interface MovieResponse {
   totalResults: string;
   Response: string;
   Error?: string;
+  data?: Movie;
 }
 
 interface MovieStore {

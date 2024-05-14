@@ -1,22 +1,16 @@
 // Libraries
+import { useEffect } from "react";
 import { useParams } from "react-router";
 
 // Store
 import useMovieStore from "../../store/movies";
 
-// Types
-import { Movie } from "../../store/types";
-
 // Styling
 import "./movie.scss";
-import { useEffect } from "react";
 
 const MoviePage = () => {
   const { movieInfo, fetchMovieData } = useMovieStore();
   const { id } = useParams();
-
-  //const movieData: Movie = series.filter(({ imdbID }) => imdbID !== id)[0];
-  console.log(movieInfo);
 
   useEffect(() => {
     fetchMovieData(id);

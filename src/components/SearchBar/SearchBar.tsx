@@ -7,8 +7,8 @@ import "./searchbar.scss";
 interface searchBarProps {
   searchValue: string;
   year: string;
-  setSearchValue: () => void;
-  setYear: () => void;
+  setSearchValue: (e: string) => void;
+  setYear: (e: string) => void;
 }
 
 const SearchBar: React.FC<searchBarProps> = ({

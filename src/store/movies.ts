@@ -4,15 +4,44 @@ import { persist } from "zustand/middleware";
 import axios from "axios";
 
 // Types
-import { MovieStore, MovieResponse } from "./types";
+import { MovieStore, MovieResponse, Movie } from "./types";
+
+const INITIAL_MOVIE_INFO = {
+  Title: "",
+  Year: "",
+  Rated: "",
+  Released: "",
+  Runtime: "",
+  Genre: "",
+  Director: "",
+  Writer: "",
+  Actors: "",
+  Plot: "",
+  Language: "",
+  Country: "",
+  Awards: "",
+  Poster: "",
+  Ratings: [],
+  Metascore: "",
+  imdbRating: "",
+  imdbVotes: "",
+  imdbID: "",
+  Type: "",
+  DVD: "",
+  BoxOffice: "",
+  Production: "",
+  Website: "",
+  Response: "",
+  totalSeasons: "",
+};
 
 const useMovieStore = create<MovieStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       movies: [],
       series: [],
       episodes: [],
-      movieInfo: {},
+      movieInfo: INITIAL_MOVIE_INFO,
       totalResults: 0,
 
       viewMode: "grid",
@@ -42,8 +71,6 @@ const useMovieStore = create<MovieStore>()(
                 : { episodes: response.data.Search }
             );
             set({ totalResults: parseInt(response.data.totalResults, 10) });
-            console.log("t", get().movies);
-            console.log(response);
           } else {
             console.error(response.data.Error || "Failed to fetch movies.");
             set(
@@ -72,17 +99,16 @@ const useMovieStore = create<MovieStore>()(
         )}`;
 
         try {
-          const response = await axios.get<MovieResponse>(url);
+          const response = await axios.get<Movie>(url);
           if (response?.status === 200) {
             set({ movieInfo: response.data });
-            console.log(response);
           } else {
-            console.error(response.data.Error || "Failed to fetch movies.");
-            set({ movieInfo: {} });
+            console.error(response.data || "Failed to fetch movies.");
+            set({ movieInfo: INITIAL_MOVIE_INFO });
           }
         } catch (error) {
           console.error("Error fetching movies:", error);
-          set({ movieInfo: {} });
+          set({ movieInfo: INITIAL_MOVIE_INFO });
         }
       },
     }),
