@@ -44,10 +44,10 @@ const useMovieStore = create<MovieStore>()(
       movieInfo: INITIAL_MOVIE_INFO,
       totalResults: 0,
 
-      viewMode: "grid",
-
-      setViewMode: (mode: string) => set({ viewMode: mode }),
-
+      // Fetch all movies/series/episodes according to user choice
+      /* NOTE: Having an IMDb ID or movie title is essential in the API
+          therefore searching by only year is not possible.
+      */
       fetchMovies: async (
         year: string,
         search: string = "",
@@ -93,6 +93,7 @@ const useMovieStore = create<MovieStore>()(
         }
       },
 
+      // Fetch certain movie data according to imdbID, used in movie page
       fetchMovieData: async (imdbID: string = "tt3108894") => {
         const url = `http://www.omdbapi.com/?apikey=98bfdd67&i=${encodeURIComponent(
           imdbID

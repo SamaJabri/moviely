@@ -46,7 +46,6 @@ interface MovieStore {
   episodes: Movie[];
   movieInfo: Movie;
   totalResults: number;
-  viewMode: string;
   fetchMovies: (
     year: string,
     search?: string,
