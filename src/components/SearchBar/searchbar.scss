@@ -1,11 +1,21 @@
 @import "src/styles/variables.scss";
+@import "src/styles/mixins.scss";
 
 .searchbar {
+  @include flex-display();
+
   background: transparent;
   border: 2px solid $primary;
   border-radius: $radius-sm;
-  padding: 0.8rem 2rem;
-  outline: none;
   width: 70%;
   font-size: 1.2rem;
+
+  input {
+    padding: 0.8rem 2rem;
+    outline: none;
+  }
+
+  &_name {
+    width: 100%;
+  }
 }

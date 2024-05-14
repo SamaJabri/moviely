@@ -5,7 +5,7 @@
   width: 100%;
   border: 2px solid $primary;
   border-radius: $radius-md;
-  overflow-x: hidden;
+  overflow: hidden;
 
   &_head {
     background-color: $primary;
@@ -39,13 +39,14 @@
         transform: scale(1.01);
         cursor: pointer;
         background-color: rgba(128, 128, 128, 0.13);
+        box-shadow: 0px 7px 14px 0px rgba(0, 0, 0, 0.1);
       }
     }
 
     img {
       width: 150px;
       height: 100px;
-      object-fit: "cover";
+      object-fit: cover;
     }
   }
 }

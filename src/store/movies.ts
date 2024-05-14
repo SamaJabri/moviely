@@ -8,7 +8,7 @@ import { MovieStore, MovieResponse } from "./types";
 
 const useMovieStore = create<MovieStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       movies: [],
       series: [],
       episodes: [],
@@ -20,13 +20,16 @@ const useMovieStore = create<MovieStore>()(
       setViewMode: (mode: string) => set({ viewMode: mode }),
 
       fetchMovies: async (
+        year: string,
         search: string = "",
         type: string = "movie",
         page: number = 1
       ) => {
-        const url = `http://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
+        let url = `http://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
           search
         )}&t=${encodeURIComponent(search)}&page=${page}&type=${type}`;
+
+        url += year && `&y=${year}`;
 
         try {
           const response = await axios.get<MovieResponse>(url);
@@ -39,6 +42,7 @@ const useMovieStore = create<MovieStore>()(
                 : { episodes: response.data.Search }
             );
             set({ totalResults: parseInt(response.data.totalResults, 10) });
+            console.log("t", get().movies);
             console.log(response);
           } else {
             console.error(response.data.Error || "Failed to fetch movies.");

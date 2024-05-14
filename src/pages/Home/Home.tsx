@@ -25,6 +25,7 @@ const Home = () => {
   const totalPages = Math.ceil(totalResults / 10);
 
   const [searchValue, setSearchValue] = useState("Pokemon");
+  const [year, setYear] = useState("");
 
   const handleDataTypeShownChange = (type: string) => {
     setDataTypeShown(type);
@@ -34,7 +35,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchMovies(searchValue, dataTypeShown, currentPage);
+    fetchMovies(year, searchValue, dataTypeShown, currentPage);
+  }, [searchValue, year, dataTypeShown, currentPage]);
+
+  useEffect(() => {
     setDataShown(
       dataTypeShown === "movie"
         ? movies
@@ -42,7 +46,7 @@ const Home = () => {
         ? series
         : episodes
     );
-  }, [searchValue, dataTypeShown, currentPage]);
+  }, [movies, series, episodes, dataTypeShown]);
 
   return (
     <div className="home">
@@ -51,6 +55,8 @@ const Home = () => {
           <SearchBar
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            year={year}
+            setYear={setYear}
           />
 
           <div className="options_view">
@@ -132,7 +138,7 @@ const Home = () => {
       </div>
 
       {/* If there's no data don't show pagination options */}
-      {dataShown && (
+      {dataShown && dataShown?.length > 0 && (
         <div className="pagination-controls">
           <button
             onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}

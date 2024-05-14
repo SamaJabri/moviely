@@ -46,7 +46,12 @@ interface MovieStore {
   movieInfo: Movie;
   totalResults: number;
   viewMode: string;
-  fetchMovies: (search?: string, type?: string, page?: number) => Promise<void>;
+  fetchMovies: (
+    year: string,
+    search?: string,
+    type?: string,
+    page?: number
+  ) => Promise<void>;
   fetchMovieData: (imdbID?: string, type?: string) => Promise<void>;
 }
 
