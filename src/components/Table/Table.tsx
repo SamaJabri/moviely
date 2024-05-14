@@ -21,28 +21,25 @@ const Table: React.FC<TableProps> = ({ movies }) => {
       </thead>
       <tbody className="movie-table_body">
         {movies?.map(({ Title, Year, imdbID, Poster }) => (
-          <>
-            <tr>
-              <td className="movie-table_cell">
-                <img
-                  src={Poster}
-                  alt={`Poster of ${Title}`}
-                  style={{ maxWidth: "100px" }}
-                />
-              </td>
-              <td className="movie-table_cell-title">{Title}</td>
-              <td className="movie-table_cell">{Year}</td>
-              <td className="movie-table_cell">
-                <a
-                  href={`https://www.imdb.com/title/${imdbID}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {imdbID}
-                </a>
-              </td>
-            </tr>
-          </>
+          <tr key={imdbID}>
+            <td className="movie-table_cell">
+              <img
+                src={Poster === "N/A" ? "./images/cinema.png" : Poster}
+                alt={`Poster of ${Title}`}
+              />
+            </td>
+            <td className="movie-table_cell-title">{Title}</td>
+            <td className="movie-table_cell">{Year}</td>
+            <td className="movie-table_cell">
+              <a
+                href={`https://www.imdb.com/title/${imdbID}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {imdbID}
+              </a>
+            </td>
+          </tr>
         ))}
       </tbody>
     </table>

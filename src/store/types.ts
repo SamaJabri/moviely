@@ -40,7 +40,9 @@ interface MovieResponse {
 
 interface MovieStore {
   movies: Movie[];
-  fetchMovies: (search: string, page?: number) => Promise<void>;
+  series: Movie[];
+  episodes: Movie[];
+  fetchMovies: (search?: string, type?: string, page?: number) => Promise<void>;
 }
 
 export type { Movie, MovieResponse, MovieStore };

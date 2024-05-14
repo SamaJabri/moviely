@@ -1,5 +1,6 @@
 // Libraries
 import { useEffect, useState } from "react";
+import { isEqual } from "lodash";
 
 // Store
 import useMovieStore from "../../store/movies";
@@ -13,14 +14,24 @@ import Table from "../../components/Table/Table";
 import "./home.scss";
 
 const Home = () => {
-  const [viewMode, setViewMode] = useState("grid");
-  const [isMovieShown, setisMovieShown] = useState(true);
+  const { movies, series, episodes, fetchMovies } = useMovieStore();
 
-  const { movies, fetchMovies } = useMovieStore();
+  const [viewMode, setViewMode] = useState("grid");
+  const [dataTypeShown, setDataTypeShown] = useState("movies");
+  const [dataShown, setDataShown] = useState(movies);
+
+  const [searchValue, setSearchValue] = useState("Pokemon");
+
+  const handleDataTypeShownChange = (type: string) => {
+    setDataTypeShown(type);
+    setDataShown(
+      type === "movies" ? movies : type === "series" ? series : episodes
+    );
+  };
 
   useEffect(() => {
-    fetchMovies("");
-  }, []);
+    fetchMovies(searchValue, dataTypeShown);
+  }, [searchValue, dataTypeShown]);
 
   return (
     <div className="home">
@@ -47,7 +58,10 @@ const Home = () => {
 
       <div className="movies">
         <div className="options">
-          <SearchBar />
+          <SearchBar
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
 
           <div className="options_view">
             <div
@@ -84,33 +98,45 @@ const Home = () => {
 
       <div className="movies-switcher">
         <p
-          className={`${isMovieShown && "movies-switcher-active"}`}
-          onClick={() => setisMovieShown(true)}
+          className={`${
+            dataTypeShown === "movies" && "movies-switcher-active"
+          }`}
+          onClick={() => handleDataTypeShownChange("movies")}
         >
           Movies
         </p>
         <p
-          className={`${!isMovieShown && "movies-switcher-active"}`}
-          onClick={() => setisMovieShown(false)}
+          className={`${
+            dataTypeShown === "series" && "movies-switcher-active"
+          }`}
+          onClick={() => handleDataTypeShownChange("series")}
         >
           TV Series
+        </p>
+        <p
+          className={`${
+            dataTypeShown === "episodes" && "movies-switcher-active"
+          }`}
+          onClick={() => handleDataTypeShownChange("episodes")}
+        >
+          Episodes
         </p>
       </div>
 
       {/* First check is if movies exist, second check is for view mode */}
       <div className="movies-list">
-        {movies ? (
+        {movies || series || episodes ? (
           viewMode === "grid" ? (
             <div className="movies-list-grid">
-              {movies.map((movie) => (
+              {dataShown?.map((movie) => (
                 <MovieCard key={movie.imdbID} movie={movie} />
               ))}
             </div>
           ) : (
-            <Table movies={movies} />
+            <Table movies={dataShown} />
           )
         ) : (
-          <p>
+          <p className="movies-list-warning">
             No movies/TV-series to show at the moment, sorry for the
             inconvenience!
           </p>

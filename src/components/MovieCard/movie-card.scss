@@ -34,10 +34,17 @@
     h2 {
       color: $secondary;
       font-size: 1.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
-    p {
+    &-imdb {
       font-size: 1.25rem;
+      text-decoration: none;
+      color: #242424;
     }
 
     &-release {
