@@ -161,7 +161,7 @@ const MoviePage = () => {
               IMDb Votes: {movieInfo.imdbVotes || "-"}
             </p>
           </div>
-          {movieInfo.Ratings.length > 0 && (
+          {movieInfo.Ratings && movieInfo.Ratings?.length > 0 && (
             <div className="movie_info-ratings">
               {movieInfo.Ratings.map(({ Source, Value }, index) => (
                 <div key={index}>

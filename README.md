@@ -30,7 +30,7 @@ Your all time favorite destination for making your Friday movie nights better.
 
 ## Demo
 
-You can find a working demo on [ReactJs](https://www.netlify.com/)
+You can find a working demo on [Netlify](https://www.netlify.com/)
 Demo: [moviely-co.netlify.app](https://moviely-co.netlify.app/)
 
 ## Contact

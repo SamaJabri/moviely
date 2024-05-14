@@ -7,12 +7,17 @@
   background: transparent;
   border: 2px solid $primary;
   border-radius: $radius-sm;
-  width: 70%;
+  width: 100%;
   font-size: 1.2rem;
+
+  @include lg {
+    width: 70%;
+  }
 
   input {
     padding: 0.8rem 2rem;
     outline: none;
+    width: 100%;
   }
 
   &_name {
