@@ -54,7 +54,7 @@ const useMovieStore = create<MovieStore>()(
         type: string = "movie",
         page: number = 1
       ) => {
-        let url = `http://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
+        let url = `https://www.omdbapi.com/?apikey=98bfdd67&s=${encodeURIComponent(
           search
         )}&t=${encodeURIComponent(search)}&page=${page}&type=${type}`;
 
@@ -95,7 +95,7 @@ const useMovieStore = create<MovieStore>()(
 
       // Fetch certain movie data according to imdbID, used in movie page
       fetchMovieData: async (imdbID: string = "tt3108894") => {
-        const url = `http://www.omdbapi.com/?apikey=98bfdd67&i=${encodeURIComponent(
+        const url = `https://www.omdbapi.com/?apikey=98bfdd67&i=${encodeURIComponent(
           imdbID
         )}`;
 
