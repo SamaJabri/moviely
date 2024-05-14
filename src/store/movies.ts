@@ -15,6 +15,10 @@ const useMovieStore = create<MovieStore>()(
       movieInfo: {},
       totalResults: 0,
 
+      viewMode: "grid",
+
+      setViewMode: (mode: string) => set({ viewMode: mode }),
+
       fetchMovies: async (
         search: string = "",
         type: string = "movie",

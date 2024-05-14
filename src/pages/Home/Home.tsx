@@ -1,8 +1,9 @@
 // Libraries
 import { useEffect, useState } from "react";
 
-// Store
+// Stores
 import useMovieStore from "../../store/movies";
+import usePreferenceStore from "../../store/preferences";
 
 // Components
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -15,9 +16,9 @@ import "./home.scss";
 const Home = () => {
   const { movies, series, episodes, totalResults, fetchMovies } =
     useMovieStore();
+  const { viewMode, setViewMode, dataTypeShown, setDataTypeShown } =
+    usePreferenceStore();
 
-  const [viewMode, setViewMode] = useState("grid");
-  const [dataTypeShown, setDataTypeShown] = useState("movie");
   const [dataShown, setDataShown] = useState(movies);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -130,23 +131,28 @@ const Home = () => {
         )}
       </div>
 
-      <div className="pagination-controls">
-        <button
-          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-          disabled={currentPage === 1}
-        >
-          &#60;
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage === totalPages}
-        >
-          &#62;
-        </button>
-      </div>
+      {/* If there's no data don't show pagination options */}
+      {dataShown && (
+        <div className="pagination-controls">
+          <button
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+          >
+            &#60;
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() =>
+              setCurrentPage(Math.min(totalPages, currentPage + 1))
+            }
+            disabled={currentPage === totalPages}
+          >
+            &#62;
+          </button>
+        </div>
+      )}
     </div>
   );
 };

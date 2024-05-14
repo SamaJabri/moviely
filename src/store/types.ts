@@ -45,8 +45,16 @@ interface MovieStore {
   episodes: Movie[];
   movieInfo: Movie;
   totalResults: number;
+  viewMode: string;
   fetchMovies: (search?: string, type?: string, page?: number) => Promise<void>;
   fetchMovieData: (imdbID?: string, type?: string) => Promise<void>;
 }
 
-export type { Movie, MovieResponse, MovieStore };
+interface PreferenceStore {
+  viewMode: string;
+  dataTypeShown: string;
+  setViewMode: (mode: string) => void;
+  setDataTypeShown: (type: string) => void;
+}
+
+export type { Movie, MovieResponse, MovieStore, PreferenceStore };

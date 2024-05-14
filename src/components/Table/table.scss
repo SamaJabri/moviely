@@ -5,6 +5,7 @@
   width: 100%;
   border: 2px solid $primary;
   border-radius: $radius-md;
+  overflow-x: hidden;
 
   &_head {
     background-color: $primary;
@@ -29,6 +30,16 @@
 
     &-title {
       font-weight: bold;
+    }
+
+    &-wrapper {
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        transform: scale(1.01);
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.13);
+      }
     }
 
     img {

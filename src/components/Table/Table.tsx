@@ -1,4 +1,5 @@
 // Types
+import { useNavigate } from "react-router";
 import { Movie } from "../../store/types";
 
 // Styling
@@ -9,6 +10,8 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ movies }) => {
+  const navigate = useNavigate();
+
   return (
     <table className="movie-table">
       <thead className="movie-table_head">
@@ -21,7 +24,11 @@ const Table: React.FC<TableProps> = ({ movies }) => {
       </thead>
       <tbody className="movie-table_body">
         {movies?.map(({ Title, Year, imdbID, Poster }) => (
-          <tr key={imdbID}>
+          <tr
+            key={imdbID}
+            onClick={() => navigate(`movie/${imdbID}`)}
+            className="movie-table_cell-wrapper"
+          >
             <td className="movie-table_cell">
               <img
                 src={Poster === "N/A" ? "./images/cinema.png" : Poster}
