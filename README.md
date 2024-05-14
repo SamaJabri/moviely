@@ -10,7 +10,7 @@ This project was developed using React + TypeScript. A little prototype was crea
 
 - Frontend: [ReactJs](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - State-management: [Zustand](https://zustand-demo.pmnd.rs/)
-- Figma: [Figma](https://www.figma.com/)
+- Design: [Figma](https://www.figma.com/)
 
 ## Table of Contents
 
@@ -31,8 +31,8 @@ Your all time favorite destination for making your Friday movie nights better.
 
 ## Demo
 
-You can find a working demo on [Netlify](https://www.netlify.com/)
-Demo: [moviely-co.netlify.app](https://moviely-co.netlify.app/)
+You can find a working demo on [Netlify](https://www.netlify.com/) <br />
+Demo: [moviely-co.netlify.app](https://moviely-co.netlify.app/) <br />
 Figma Design Prototype: [Design](https://www.figma.com/design/LU92vXQpIUrXbRZ2qnMRiV/Moviely?node-id=0%3A1&t=w6P9Med3s4vsSMPV-1)
 
 ## Contact
