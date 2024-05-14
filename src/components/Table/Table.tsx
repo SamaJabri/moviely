@@ -1,6 +1,14 @@
-import "./table.scss";
+// Types
+import { Movie } from "../../store/types";
 
-const Table = ({ movies }) => {
+// Styling
+import "./movie-card.scss";
+
+interface TableProps {
+  movies: Movie[];
+}
+
+const Table: React.FC<TableProps> = ({ movies }) => {
   return (
     <table className="movie-table">
       <thead className="movie-table_head">
@@ -12,7 +20,7 @@ const Table = ({ movies }) => {
         </tr>
       </thead>
       <tbody className="movie-table_body">
-        {movies.map(({ Title, Year, imdbID, Poster }) => (
+        {movies?.map(({ Title, Year, imdbID, Poster }) => (
           <>
             <tr>
               <td className="movie-table_cell">

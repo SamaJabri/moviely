@@ -1,8 +1,6 @@
-import PropTypes from "prop-types";
-
 import "./movie.scss";
 
-const Movie = (props) => {
+const Movie = () => {
   return <div>Movie</div>;
 };
 

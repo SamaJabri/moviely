@@ -1,4 +1,4 @@
-// Library imports
+// Libraries
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 

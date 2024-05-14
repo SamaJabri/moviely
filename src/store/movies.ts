@@ -1,6 +1,8 @@
+// Libraries
 import { create } from "zustand";
 import axios from "axios";
 
+// Types
 import { MovieStore, MovieResponse } from "./types";
 
 const useMovieStore = create<MovieStore>(

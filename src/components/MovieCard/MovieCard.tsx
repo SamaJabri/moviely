@@ -1,6 +1,14 @@
+// Types
+import { Movie } from "../../store/types";
+
+// Styling
 import "./movie-card.scss";
 
-const MovieCard = ({ movie }) => {
+interface CardProps {
+  movie: Movie;
+}
+
+const MovieCard: React.FC<CardProps> = ({ movie }) => {
   const { Title, Year, imdbID, Poster } = movie;
 
   return (

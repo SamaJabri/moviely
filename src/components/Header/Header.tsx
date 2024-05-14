@@ -1,5 +1,7 @@
-// Styling
+// Libraries
 import { useState, useEffect } from "react";
+
+// Styling
 import "./header.scss";
 
 const Header = () => {

@@ -7,19 +7,20 @@ import useMovieStore from "../../store/movies";
 // Components
 import SearchBar from "../../components/SearchBar/SearchBar";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import Table from "../../components/Table/Table";
 
 // Styling
 import "./home.scss";
-import Table from "../../components/Table/Table";
 
 const Home = () => {
   const [viewMode, setViewMode] = useState("grid");
+  const [isMovieShown, setisMovieShown] = useState(true);
 
   const { movies, fetchMovies } = useMovieStore();
 
   useEffect(() => {
-    fetchMovies("Star Wars");
-  }, [fetchMovies]);
+    fetchMovies("");
+  }, []);
 
   return (
     <div className="home">
@@ -81,21 +82,42 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="movies_list">
-        {viewMode === "grid" ? (
-          <div className="movies_list-grid">
-            {movies.map((movie) => (
-              <MovieCard key={movie.imdbID} movie={movie} />
-            ))}
-          </div>
+      <div className="movies-switcher">
+        <p
+          className={`${isMovieShown && "movies-switcher-active"}`}
+          onClick={() => setisMovieShown(true)}
+        >
+          Movies
+        </p>
+        <p
+          className={`${!isMovieShown && "movies-switcher-active"}`}
+          onClick={() => setisMovieShown(false)}
+        >
+          TV Series
+        </p>
+      </div>
+
+      {/* First check is if movies exist, second check is for view mode */}
+      <div className="movies-list">
+        {movies ? (
+          viewMode === "grid" ? (
+            <div className="movies-list-grid">
+              {movies.map((movie) => (
+                <MovieCard key={movie.imdbID} movie={movie} />
+              ))}
+            </div>
+          ) : (
+            <Table movies={movies} />
+          )
         ) : (
-          <Table movies={movies} />
+          <p>
+            No movies/TV-series to show at the moment, sorry for the
+            inconvenience!
+          </p>
         )}
       </div>
     </div>
   );
 };
-
-Home.propTypes = {};
 
 export default Home;
