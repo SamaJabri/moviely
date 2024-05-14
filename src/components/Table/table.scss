@@ -1,0 +1,34 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixins.scss";
+
+.movie-table {
+  width: 100%;
+  border: 2px solid $primary;
+  border-radius: $radius-md;
+
+  &_head {
+    background-color: $primary;
+    color: white;
+
+    th {
+      padding: 1rem;
+      border: 2px solid $primary;
+      border-radius: $radius-md;
+    }
+  }
+
+  tr,
+  th,
+  td {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  &_cell {
+    font-size: 1.3rem;
+
+    &-title {
+      font-weight: bold;
+    }
+  }
+}

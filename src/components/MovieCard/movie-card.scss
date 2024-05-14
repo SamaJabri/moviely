@@ -1,0 +1,48 @@
+@import "src/styles/variables.scss";
+@import "src/styles/mixins.scss";
+
+.card {
+  border: 2px solid $primary;
+  border-radius: $radius-md;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+
+  &:hover {
+    box-shadow: 8px 14px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+
+  &_image {
+    width: 100%;
+    height: 100%;
+    border-radius: $radius-md;
+    object-fit: cover;
+
+    &-container {
+      width: 100%;
+      height: 18rem;
+    }
+  }
+
+  &_description {
+    @include flex-display($direction: column, $align: start);
+    gap: 0.3rem;
+    padding: 1.5rem;
+    padding-top: 1rem;
+
+    h2 {
+      color: $secondary;
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+    }
+
+    &-release {
+      margin-top: 0.5rem;
+      color: $extra-info;
+    }
+  }
+}

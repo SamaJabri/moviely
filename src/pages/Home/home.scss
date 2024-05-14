@@ -37,3 +37,56 @@
     }
   }
 }
+
+.movies {
+  @include flex-display($direction: col);
+  gap: 3rem;
+  margin-top: 5rem;
+  width: 100%;
+  padding: 0 5rem;
+
+  &_list {
+    margin: 5rem 0;
+    padding: 0 3rem;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-content: center;
+      align-items: start;
+      gap: 3rem;
+    }
+  }
+}
+
+.options {
+  @include flex-display($justify: space-between);
+  width: 100%;
+
+  &_view,
+  &_table,
+  &_grid {
+    @include flex-display();
+    border-radius: $radius-sm;
+  }
+
+  &_view {
+    //border: 2px solid $primary;
+    background-color: $secondary-light;
+  }
+
+  &_table,
+  &_grid {
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &_switch_active {
+    background-color: $secondary;
+    transform: scale(1.02);
+  }
+}

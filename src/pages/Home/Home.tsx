@@ -1,15 +1,25 @@
 // Libraries
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// Store
+import useMovieStore from "../../store/movies";
 
 // Components
-import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import MovieCard from "../../components/MovieCard/MovieCard";
 
 // Styling
 import "./home.scss";
+import Table from "../../components/Table/Table";
 
 const Home = () => {
   const [viewMode, setViewMode] = useState("grid");
+
+  const { movies, fetchMovies } = useMovieStore();
+
+  useEffect(() => {
+    fetchMovies("Star Wars");
+  }, [fetchMovies]);
 
   return (
     <div className="home">
@@ -39,7 +49,7 @@ const Home = () => {
           <SearchBar />
 
           <div className="options_view">
-            <p
+            <div
               className={`options_table ${
                 viewMode === "table" && "options_switch_active"
               }`}
@@ -50,10 +60,10 @@ const Home = () => {
                 alt="Table Icon"
                 height={24}
                 width={24}
+                title="Table"
               />
-              Table
-            </p>
-            <p
+            </div>
+            <div
               className={`options_grid ${
                 viewMode === "grid" && "options_switch_active"
               }`}
@@ -64,11 +74,23 @@ const Home = () => {
                 alt="Grid Icon"
                 height={24}
                 width={24}
+                title="Grid"
               />
-              Grid
-            </p>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="movies_list">
+        {viewMode === "grid" ? (
+          <div className="movies_list-grid">
+            {movies.map((movie) => (
+              <MovieCard key={movie.imdbID} movie={movie} />
+            ))}
+          </div>
+        ) : (
+          <Table movies={movies} />
+        )}
       </div>
     </div>
   );
