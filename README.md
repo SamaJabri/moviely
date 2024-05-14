@@ -27,7 +27,8 @@ Your all time favorite destination for making your Friday movie nights better.
 
 1. Clone the repository: `git clone https://github.com/SamaJabri/Moviely`
 2. Install dependencies by running the following command in the project folder: `npm install`
-3. Build and run the project: `npm run build`
+3. Build the project: `npm run build`
+4. Run the project: `npm run preview`
 
 ## Demo
 
